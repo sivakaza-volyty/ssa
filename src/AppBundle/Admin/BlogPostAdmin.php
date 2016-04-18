@@ -19,7 +19,7 @@ class BlogPostAdmin extends Admin
             ->add('id')
             ->add('title')
             ->add('body')
-            ->add('draft')
+           # ->add('draft')
         ;
     }
 
@@ -30,6 +30,7 @@ class BlogPostAdmin extends Admin
     {
         $listMapper
             ->add('id')
+            ->add('category.name')
             ->add('title')
             ->add('body')
             ->add('draft')
@@ -40,6 +41,7 @@ class BlogPostAdmin extends Admin
                     'delete' => array(),
                 )
             ))
+
         ;
     }
 
@@ -74,5 +76,12 @@ class BlogPostAdmin extends Admin
             ->add('body')
             ->add('draft')
         ;
+    }
+
+    public function toString($object)
+    {
+        return $object instanceof BlogPost
+            ? $object->getTitle()
+            : 'Blog Post'; // shown in the breadcrumb on the create view
     }
 }
